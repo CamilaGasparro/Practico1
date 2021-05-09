@@ -1,0 +1,54 @@
+from Email import Email
+import os
+import csv
+
+
+def readDataset():
+    newArray = []
+    with open('dataset.csv') as File:
+        reader = csv.reader(File, delimiter=',')
+
+        for row in reader:
+            newArray.append(row)
+
+    return newArray[0]
+
+def creacionDeCuenta(emailOne):
+    valid = False
+    print(' - Crear cuenta')
+
+    while not valid:
+        valid = emailOne.crearCuenta(input('\t.Ingrese su email: '))
+
+    nombre=input('\t.Ingrese el nombre: ')
+    print('\n < Cuenta creada correctamente! > \n')
+    print('Estimado {} te enviaremos tus mensajes a la direccion {}\n'.format(nombre, emailOne.retornaEmail()))
+
+def cambiarClave(emailOne):
+    valid = False
+    print(' - Cambio de clave')
+
+    while not valid:
+        valid = emailOne.changePassword()
+
+    print('\n < Cambio de clave realizado! > \n')
+
+def contarCorreos():
+    count = 0
+    print('\n - Contar correos por dominio')
+    listEmails = readDataset()
+    domToFind = input("\t.Ingresar dominio a buscar: ")
+    # print(listEmails)
+
+    for email in listEmails:
+        if(email.split('@')[1].split('.')[1] == domToFind):
+            count += 1
+
+    print('\n < La cantidad de correos con este dominio son: {} > '.format(count))
+
+if __name__ == '__main__':
+    os.system("color 3f")
+    emailOne = Email() #Instancia de Email
+    creacionDeCuenta(emailOne)
+    cambiarClave(emailOne)
+    contarCorreos()
