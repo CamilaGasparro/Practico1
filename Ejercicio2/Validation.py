@@ -38,25 +38,3 @@ class Validation(object):
         print('\n < Validations success >')
         return True
 
-#Ejemplo de uso
-#
-# valid = Validation()
-#
-# # El metodo test devuelve True o False si se cumplieron todas las validaciones
-# result = valid.test(
-#     {
-#         1: {
-#             'regex': 'email',
-#             'data': email -> 'alguien@gmail.com',
-#             'type': str
-#         },
-#         2: {
-#             'data': precio -> 59.3,
-#             'type': float
-#         },
-#         3: {
-#             'data': name -> 'Elon',
-#             'type': str
-#         }
-#     }
-# )
